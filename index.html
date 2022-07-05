@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = 'word-game.js'></script>
+    <script src = 'phone-bill.js'></script>
+    <script src = 'expensive-items.js'></script>
+    <script src = 'word-game-widget.js' defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    
+</head>
+
+<body>
+    <!-- WORD GAME -->
+    <div x-data = 'wordGameWidget'>
+        <div>
+            <input type = 'text' placeholder="Enter message here..." id = 'message1' x-model = 'message'>
+        </div>
+        <div>
+            <button @click = 'showDiv = true; longFunc()'>Longest word</button>
+            <button @click = 'showDiv = true; shortFunc()'>Shortest word</button>
+            <button @click = 'showDiv = true; charFunc()'>Character count</button>
+        </div>
+
+        <div x-text = 'sentence'></div>
+        <!-- on button hover, explain what button does -->
+    </div>
+
+    <!-- TOTAL PHONE BILL -->
+    <div x-data = " {
+        account: '',
+        answer1: '',
+        billDiv: false,
+        billOutput: 'Your total phone bill is ',
+
+        billFunc () {
+            this.answer1 = this.billOutput + totalPhoneBill(this.account);
+        }
+    }">
+
+        <div>
+            <input type = 'text' placeholder="Enter calls and sms's..."  x-model = 'account'>
+        </div>
+        <div>
+            <button @click = 'billDiv = true; billFunc()'>Calculate phone bill</button>
+        </div>
+        <div style = 'padding: 2em; background-color: pink' x-show = 'billDiv' x-text = 'answer1'></div>
+    </div>
+
+    <!-- EXPENSIVE ITEMS -->
+    <div x-data = '{
+       showMessage: false,
+       name: " ",
+       qty: " ",
+       display: " ",
+       itemList: [],
+
+       createObj() {
+            this.itemList.push("{name: " + this.name + ", qty: " + this.qty + "}");
+       },
+
+       over20Func() {
+            this.display = "Fruits with quantities over 20: " + findItemsOver20(this.list);
+       },
+    }'>
+
+    <input id = 'name' type = 'text' placeholder = 'name' x-model = 'name'></input>
+    <input id = 'qty' type = 'text' placeholder = 'qty' x-model = 'qty'></input>
+    <div>
+        <button @click = 'createObj()'>Add</button>
+        <button @click = 'showMessage = true; over20Func()'>Items over 20</button>
+    </div>
+    <div  style = 'background-color: grey' x-show = 'showMessage' x-text = 'display'></div>
+    </div>
+
+
+    <div x-data = '{
+        filterResults: false,
+        town1: " ",
+        color1: " ",
+        model1: " ",
+        filter: " ",
+
+        filterFunc() {
+            if (this.town1.length > 0 && this.color1.length == 0 && this.model1.length == 0) {
+                this.filter = nameOfTown(this.town1);
+            } else if (this.town1.length > 0 && this.color1.length > 0 && this.model1.length == 0) {
+                this.filter = numberOfCars (this.color1, this.town1);
+            } else {
+                this.filter = numberOfCarsPerModel(this.color1, this.model1, this.town1);
+            }    
+        }
+    }'>
+
+    <div>
+        <input type = 'text' placeholder = 'Enter town name..' x-model = 'town1'>
+        <input type = 'text' placeholder = 'Enter color..' x-model = 'color1'>
+        <input type = 'text' placeholder = 'Enter model..' x-model = 'model1'>
+    </div>
+    <div>
+        <button @click = 'filterResults = true; filterFunc()'>Filter</button>
+    </div>
+    <div x-show = 'filterResults' x-text = 'filter'></div>
+
+    </div>
+
+</body>
+
+</html>
