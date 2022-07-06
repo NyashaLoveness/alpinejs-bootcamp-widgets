@@ -216,8 +216,8 @@ var cars = [ {
     }
       return arrCar;
   }
-  console.log(numberOfCars('blue', 'Cape Town'));
-  console.log(numberOfCars('red', 'Paarl'));
+  /*console.log(numberOfCars('blue', 'Cape Town'));
+  console.log(numberOfCars('red', 'Paarl'));*/
   
   //Question 10
   function numberOfCarsPerModel(carColor, carModel, townName) {
@@ -247,6 +247,6 @@ var cars = [ {
     }
     return arrCar;  
   }
-  console.log(numberOfCarsPerModel('orange','Hilux','Bellville'));
+  /*console.log(numberOfCarsPerModel('orange','Hilux','Bellville'));*/
   
   

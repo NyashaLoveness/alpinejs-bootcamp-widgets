@@ -7,10 +7,10 @@
     <title>Document</title>
     <script src = 'word-game.js'></script>
     <script src = 'phone-bill.js'></script>
-    <script src = 'expensive-items.js'></script>
+    <script src = 'cars-from-where.js'></script>
     <script src = 'word-game-widget.js' defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    
+    <script src = 'expensive-items.js'></script>
 </head>
 
 <body>
@@ -51,54 +51,58 @@
     </div>
 
     <!-- EXPENSIVE ITEMS -->
-    <div x-data = '{
+    <script>
+        var itemList = [];
+        function createObj() {
+            itemList.push("{name: " + document.getElementById('name').value + ", qty: " + document.getElementById('qty').value + "}");
+            console.log(itemList);
+   };
+   </script>
+   
+   <div x-data = '{
        showMessage: false,
-       name: " ",
-       qty: " ",
+       itemList: createObj(),
        display: " ",
-       itemList: [],
 
-       createObj() {
-            this.itemList.push("{name: " + this.name + ", qty: " + this.qty + "}");
-       },
-
-       over20Func() {
-            this.display = "Fruits with quantities over 20: " + findItemsOver20(this.list);
-       },
+        over20Func() {
+            this.display = "Fruits with quantities over 20: " + findItemsOver20(this.itemList);
+        }
     }'>
 
-    <input id = 'name' type = 'text' placeholder = 'name' x-model = 'name'></input>
-    <input id = 'qty' type = 'text' placeholder = 'qty' x-model = 'qty'></input>
+    <input id = 'name' type = 'text' placeholder = 'name' ></input>
+    <input id = 'qty' type = 'text' placeholder = 'qty'></input>
     <div>
         <button @click = 'createObj()'>Add</button>
         <button @click = 'showMessage = true; over20Func()'>Items over 20</button>
     </div>
     <div  style = 'background-color: grey' x-show = 'showMessage' x-text = 'display'></div>
+
+    
+
     </div>
 
+    <script>
+        var filter = '';
+        function filterFunc() {
+            if (town1.length > 0 && color1.length == 0 && model1.length == 0) {
+                filter = nameOfTown(town1);
+            } else if (town1.length > 0 && color1.length > 0 && model1.length == 0) {
+                filter = numberOfCars (color1, town1);
+            } else {
+                filter = numberOfCarsPerModel(color1, model1, town1);
+            }    
+        }
+    </script>
 
     <div x-data = '{
         filterResults: false,
-        town1: " ",
-        color1: " ",
-        model1: " ",
-        filter: " ",
-
-        filterFunc() {
-            if (this.town1.length > 0 && this.color1.length == 0 && this.model1.length == 0) {
-                this.filter = nameOfTown(this.town1);
-            } else if (this.town1.length > 0 && this.color1.length > 0 && this.model1.length == 0) {
-                this.filter = numberOfCars (this.color1, this.town1);
-            } else {
-                this.filter = numberOfCarsPerModel(this.color1, this.model1, this.town1);
-            }    
-        }
+        filter: filterFunc(),
     }'>
 
     <div>
-        <input type = 'text' placeholder = 'Enter town name..' x-model = 'town1'>
-        <input type = 'text' placeholder = 'Enter color..' x-model = 'color1'>
-        <input type = 'text' placeholder = 'Enter model..' x-model = 'model1'>
+        <input id = 'town1' type = 'text' placeholder = 'Enter town name..' >
+        <input id = 'color1' type = 'text' placeholder = 'Enter color..' >
+        <input id = 'model1' type = 'text' placeholder = 'Enter model..' >
     </div>
     <div>
         <button @click = 'filterResults = true; filterFunc()'>Filter</button>
