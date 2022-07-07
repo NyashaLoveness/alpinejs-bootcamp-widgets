@@ -6,7 +6,7 @@ document.addEventListener('alpine:init', () => {
         sentence: " ",
         showDiv: false,
         longWord: "The longest word is ",
-        shortWord: "The shortest word is ",
+        shortWord: "The shortest word is is ",
         char: "Number of characters in the sentence: ",
 
         longFunc() {
