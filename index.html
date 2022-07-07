@@ -7,10 +7,11 @@
     <title>Document</title>
     <script src = 'word-game.js'></script>
     <script src = 'phone-bill.js'></script>
-    <script src = 'cars-from-where.js'></script>
+    
     <script src = 'word-game-widget.js' defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src = 'expensive-items.js'></script>
+    <script src = 'cars-from-where.js'></script>
 </head>
 
 <body>
@@ -77,37 +78,36 @@
     </div>
     <div  style = 'background-color: grey' x-show = 'showMessage' x-text = 'display'></div>
 
-    
-
     </div>
 
-    <script>
-        var filter = '';
-        function filterFunc() {
-            if (town1.length > 0 && color1.length == 0 && model1.length == 0) {
-                filter = nameOfTown(town1);
-            } else if (town1.length > 0 && color1.length > 0 && model1.length == 0) {
-                filter = numberOfCars (color1, town1);
-            } else {
-                filter = numberOfCarsPerModel(color1, model1, town1);
-            }    
-        }
+    <script>   
     </script>
 
     <div x-data = '{
         filterResults: false,
-        filter: filterFunc(),
+        message: "hello",
+        townname: " ",
+        color1: " ",
+        model1: " ",
+        filter: " ",
+
+        filterFunc() {
+            if (this.townname = "Malmesbury") {
+                filter = nameOfTown(this.townname)
+                console.log(filter)
+            }
+        },
     }'>
 
     <div>
-        <input id = 'town1' type = 'text' placeholder = 'Enter town name..' >
-        <input id = 'color1' type = 'text' placeholder = 'Enter color..' >
-        <input id = 'model1' type = 'text' placeholder = 'Enter model..' >
+        <input id = 'townname' type = 'text' placeholder = 'Enter town name..' x-model = 'townname' >
+        <input id = 'color1' type = 'text' placeholder = 'Enter color..' x-model = 'color1'>
+        <input id = 'model1' type = 'text' placeholder = 'Enter model..' x-model = 'model1'>
     </div>
     <div>
-        <button @click = 'filterResults = true; filterFunc()'>Filter</button>
+        <button @click = 'filterResults = true;'>Filter</button>
     </div>
-    <div x-show = 'filterResults' x-text = 'filter'></div>
+    <div x-show = 'filterResults' x-text = 'filter' style = 'background-color: blue'></div>
 
     </div>
 
