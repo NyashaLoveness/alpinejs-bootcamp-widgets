@@ -1,0 +1,23 @@
+.cont1, .cont2 {
+    display: flex;
+}
+.head {
+    margin-left: 1em;
+}
+.div1, .div2, .div3, .div4 {
+    width: 50%;
+    border: 2px solid;
+    border-color: black;
+}
+.btn1 {
+    padding: 0.6em;
+    margin: 1em;
+}
+.input1 {
+    padding: 0.6em;
+    margin-left: 0.8em;
+}
+.show{
+    background-color: pink;
+    padding: 0.7em;
+}

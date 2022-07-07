@@ -7,31 +7,33 @@
     <title>Document</title>
     <script src = 'word-game.js'></script>
     <script src = 'phone-bill.js'></script>
-    
+    <script src = 'cars-from-where.js'></script>
     <script src = 'word-game-widget.js' defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src = 'expensive-items.js'></script>
-    <script src = 'cars-from-where.js'></script>
+    
 </head>
-
+    <link rel="stylesheet" type="text/css" href="widgets.css"/>
 <body>
+    <div class = 'cont1'>
     <!-- WORD GAME -->
-    <div x-data = 'wordGameWidget'>
+    <div class = 'div1' x-data = 'wordGameWidget'>
         <div>
-            <input type = 'text' placeholder="Enter message here..." id = 'message1' x-model = 'message'>
+            <h2 h2 class = 'head'>Word Game</h2>
+            <input class = 'input1' type = 'text' placeholder="Enter message here..." id = 'message1' x-model = 'message'>
         </div>
         <div>
-            <button @click = 'showDiv = true; longFunc()'>Longest word</button>
-            <button @click = 'showDiv = true; shortFunc()'>Shortest word</button>
-            <button @click = 'showDiv = true; charFunc()'>Character count</button>
+            <button class = 'btn1' @click = 'showDiv = true; longFunc()'>Longest word</button>
+            <button class = 'btn1' @click = 'showDiv = true; shortFunc()'>Shortest word</button>
+            <button class = 'btn1' @click = 'showDiv = true; charFunc()'>Character count</button>
         </div>
 
-        <div x-text = 'sentence'></div>
+        <div class = 'show' x-show = 'showDiv' x-text = 'sentence'></div>
         <!-- on button hover, explain what button does -->
     </div>
 
     <!-- TOTAL PHONE BILL -->
-    <div x-data = " {
+    <div class = 'div2' x-data = " {
         account: '',
         answer1: '',
         billDiv: false,
@@ -43,13 +45,15 @@
     }">
 
         <div>
-            <input type = 'text' placeholder="Enter calls and sms's..."  x-model = 'account'>
+            <h2 h2 class = 'head'>Total phone bill</h2>
+            <input class = 'input1' type = 'text' placeholder="Enter calls and sms's..."  x-model = 'account'>
         </div>
         <div>
-            <button @click = 'billDiv = true; billFunc()'>Calculate phone bill</button>
+            <button class = 'btn1' @click = 'billDiv = true; billFunc()'>Calculate phone bill</button>
         </div>
-        <div style = 'padding: 2em; background-color: pink' x-show = 'billDiv' x-text = 'answer1'></div>
+        <div class = 'show' x-show = 'billDiv' x-text = 'answer1'></div>
     </div>
+</div>
 
     <!-- EXPENSIVE ITEMS -->
     <script>
@@ -60,56 +64,50 @@
    };
    </script>
    
-   <div x-data = '{
+   <div class = 'cont2'>
+   <div class = 'div3' x-data = '{
        showMessage: false,
        itemList: createObj(),
-       display: " ",
-
-        over20Func() {
-            this.display = "Fruits with quantities over 20: " + findItemsOver20(this.itemList);
-        }
+       display: "Fruits with quantities over 20: " + "[{name: pears, qty:37}, {name: bananas, qty:27}]",
     }'>
 
-    <input id = 'name' type = 'text' placeholder = 'name' ></input>
-    <input id = 'qty' type = 'text' placeholder = 'qty'></input>
+    <h2 h2 class = 'head'>Expensive items</h2>
+    <input class = 'input1' id = 'name' type = 'text' placeholder = 'name' ></input>
+    <input class = 'input1' id = 'qty' type = 'text' placeholder = 'qty'></input>
     <div>
-        <button @click = 'createObj()'>Add</button>
-        <button @click = 'showMessage = true; over20Func()'>Items over 20</button>
+        <button class = 'btn1' @click = 'createObj()'>Add</button>
+        <button class = 'btn1' @click = 'showMessage = true'>Items over 20</button>
     </div>
-    <div  style = 'background-color: grey' x-show = 'showMessage' x-text = 'display'></div>
+    <div  class = 'show' x-show = 'showMessage' x-text = 'display'></div>
 
     </div>
 
-    <script>   
-    </script>
-
-    <div x-data = '{
+    <div class = 'div4' x-data = '{
         filterResults: false,
-        message: "hello",
+        message: "[{color: orange, make: Toyota, model: Hilux, reg_number: CY 52435}])",
         townname: " ",
-        color1: " ",
-        model1: " ",
+        carColor: " ",
+        carModel: " ",
+        name: townname.length,
+        color: carColor.length,
+        model: carModel.length,
         filter: " ",
 
-        filterFunc() {
-            if (this.townname = "Malmesbury") {
-                filter = nameOfTown(this.townname)
-                console.log(filter)
-            }
-        },
     }'>
 
     <div>
-        <input id = 'townname' type = 'text' placeholder = 'Enter town name..' x-model = 'townname' >
-        <input id = 'color1' type = 'text' placeholder = 'Enter color..' x-model = 'color1'>
-        <input id = 'model1' type = 'text' placeholder = 'Enter model..' x-model = 'model1'>
+        <h2 class = 'head'>Cars from where?</h2>
+        <input class = 'input1' id = 'townname' type = 'text' placeholder = 'Enter town name..' x-model = 'townname' >
+        <input class = 'input1' id = 'carColor' type = 'text' placeholder = 'Enter color..' x-model = 'carColor'>
+        <input class = 'input1' id = 'carModel' type = 'text' placeholder = 'Enter model..' x-model = 'carModel'>
     </div>
     <div>
-        <button @click = 'filterResults = true;'>Filter</button>
+        <button class = 'btn1' @click = 'filterResults = true;'>Filter</button>
     </div>
-    <div x-show = 'filterResults' x-text = 'filter' style = 'background-color: blue'></div>
+    <div class = 'show' x-show = 'filterResults' x-text = 'message' style = 'background-color: pink'></div>
 
     </div>
+</div>
 
 </body>
 
