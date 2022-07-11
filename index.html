@@ -7,10 +7,12 @@
     <title>Document</title>
     <script src = 'word-game.js'></script>
     <script src = 'phone-bill.js'></script>
+    <script src = 'expensive-items.js'></script>
     <script src = 'cars-from-where.js'></script>
     <script src = 'word-game-widget.js' defer></script>
+    <script src = 'expensive-items-widget.js' defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src = 'expensive-items.js'></script>
+    
     
 </head>
     <link rel="stylesheet" type="text/css" href="widgets.css"/>
@@ -52,61 +54,7 @@
             <button class = 'btn1' @click = 'billDiv = true; billFunc()'>Calculate phone bill</button>
         </div>
         <div class = 'show' x-show = 'billDiv' x-text = 'answer1'></div>
-    </div>
-</div>
-
-    <!-- EXPENSIVE ITEMS -->
-    <script>
-        var itemList = [];
-        function createObj() {
-            itemList.push("{name: " + document.getElementById('name').value + ", qty: " + document.getElementById('qty').value + "}");
-            console.log(itemList);
-   };
-   </script>
-   
-   <div class = 'cont2'>
-   <div class = 'div3' x-data = '{
-       showMessage: false,
-       itemList: createObj(),
-       display: "Fruits with quantities over 20: " + "[{name: pears, qty:37}, {name: bananas, qty:27}]",
-    }'>
-
-    <h2 h2 class = 'head'>Expensive items</h2>
-    <input class = 'input1' id = 'name' type = 'text' placeholder = 'name' ></input>
-    <input class = 'input1' id = 'qty' type = 'text' placeholder = 'qty'></input>
-    <div>
-        <button class = 'btn1' @click = 'createObj()'>Add</button>
-        <button class = 'btn1' @click = 'showMessage = true'>Items over 20</button>
-    </div>
-    <div  class = 'show' x-show = 'showMessage' x-text = 'display'></div>
-
-    </div>
-
-    <div class = 'div4' x-data = '{
-        filterResults: false,
-        message: "[{color: orange, make: Toyota, model: Hilux, reg_number: CY 52435}])",
-        townname: " ",
-        carColor: " ",
-        carModel: " ",
-        name: townname.length,
-        color: carColor.length,
-        model: carModel.length,
-        filter: " ",
-
-    }'>
-
-    <div>
-        <h2 class = 'head'>Cars from where?</h2>
-        <input class = 'input1' id = 'townname' type = 'text' placeholder="Enter town name..." x-model = 'townname' >
-        <input class = 'input1' id = 'carColor' type = 'text' placeholder="Enter color..." x-model = 'carColor'>
-        <input class = 'input1' id = 'carModel' type = 'text' placeholder="Enter model..." x-model = 'carModel'>
-    </div>
-    <div>
-        <button class = 'btn1' @click = 'filterResults = true;'>Filter</button>
-    </div>
-    <div class = 'show' x-show = 'filterResults' x-text = 'message' style = 'background-color: pink'></div>
-
-    </div>
+    </div> 
 </div>
 
 </body>
