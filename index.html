@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src = 'word-game.js'></script>
-    <script src = 'phone-bill.js'></script>
-    <script src = 'expensive-items.js'></script>
-    <script src = 'cars-from-where.js'></script>
-    <script src = 'word-game-widget.js' defer></script>
-    <script src = 'expensive-items-widget.js' defer></script>
+    <script src='word-game.js'></script>
+    <script src='phone-bill.js'></script>
+    <script src='transport-fee.js'></script>
+    <script src='enough-airtime.js'></script>
+    <script src='word-game-widget.js' defer></script>
+    <script src='transport-fee-widget.js' defer></script>
+    <script src='enough-airtime-widget.js' defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    
-    
+
+
 </head>
-    <link rel="stylesheet" type="text/css" href="widgets.css"/>
+<link rel="stylesheet" type="text/css" href="widgets.css" />
+
 <body>
-    <div class = 'cont1'>
-    <!-- WORD GAME -->
-    <div class = 'div1' x-data = 'wordGameWidget'>
-        <div>
-            <h2 h2 class = 'head'>Word Game</h2>
-            <input class = 'input1' type = 'text' placeholder="Enter message here..." id = 'message1' x-model = 'message'>
-        </div>
-        <div>
-            <button class = 'btn1' @click = 'showDiv = true; longFunc()'>Longest word</button>
-            <button class = 'btn1' @click = 'showDiv = true; shortFunc()'>Shortest word</button>
-            <button class = 'btn1' @click = 'showDiv = true; charFunc()'>Character count</button>
+    <div class='cont1'>
+        <!-- WORD GAME -->
+        <div class='div1' x-data='wordGameWidget'>
+            <div>
+                <h2 class='head'>Word Game</h2>
+                <input class='input1' type='text' placeholder="Enter message here..." id='message1' x-model='message'>
+            </div>
+            <div>
+                <button class='btn1' @click='showDiv = true; longFunc()'>Longest word</button>
+                <button class='btn1' @click='showDiv = true; shortFunc()'>Shortest word</button>
+                <button class='btn1' @click='showDiv = true; charFunc()'>Character count</button>
+            </div>
+
+            <div class='show' x-show='showDiv' x-text='sentence'></div>
+            <!-- on button hover, explain what button does -->
         </div>
 
-        <div class = 'show' x-show = 'showDiv' x-text = 'sentence'></div>
-        <!-- on button hover, explain what button does -->
-    </div>
-
-    <!-- TOTAL PHONE BILL -->
-    <div class = 'div2' x-data = " {
+        <!-- TOTAL PHONE BILL -->
+        <div class='div2' x-data=" {
         account: '',
         answer1: '',
         billDiv: false,
@@ -46,16 +49,46 @@
         }
     }">
 
-        <div>
-            <h2 h2 class = 'head'>Total phone bill</h2>
-            <input class = 'input1' type = 'text' placeholder="Enter calls and sms's..."  x-model = 'account'>
+            <div>
+                <h2 class='head'>Total phone bill</h2>
+                <input class='input1' type='text' placeholder="Enter calls and sms's..." x-model='account'>
+            </div>
+            <div>
+                <button class='btn1' @click='billDiv = true; billFunc()'>Calculate phone bill</button>
+            </div>
+            <div class='show' x-show='billDiv' x-text='answer1'></div>
         </div>
-        <div>
-            <button class = 'btn1' @click = 'billDiv = true; billFunc()'>Calculate phone bill</button>
+    </div>
+
+    <div class='cont2'>
+        <!-- TRANSPORT FEE -->
+        <div class='div3' x-data='transportFeeWidget'>
+            <h2 class='head'>Transport Fee</h2>
+            <input class='radio1' type="radio" id="select" name="transport_radio" value="Morning"
+                @click='showMessage = true; feeFunc()' x-model='select'>
+            <label for='select'>Morning</label><br>
+            <input class='radio1' type="radio" id="select1" name="transport_radio" value="Afternoon"
+                @click='showMessage = true; feeFunc("afternoon")' x-model='select'>
+            <label for='select1'>Afternoon</label><br>
+            <input class='radio1' type="radio" id="select2" name="transport_radio" value="Night shift"
+                @click='showMessage = true; feeFunc("nightshsift")' x-model='select'>
+            <label for='select2'>Night shift</label><br>
+
+            <div class='show' x-show='showMessage' x-text='choice'></div>
         </div>
-        <div class = 'show' x-show = 'billDiv' x-text = 'answer1'></div>
-    </div> 
-</div>
+
+        <div class='div4' x-data="enoughAirtimeWidget">
+
+            <h2 class='head'>Enough Airtime</h2>
+            <div>
+                <input class='input1' type="text" id="str" placeholder='Enter usage...' x-model='str'>
+                <input class='input1' type="text" id="amount" placeholder='Airtime available' x-model='amount'>
+            </div>
+            <button class='btn1' @click='showMessage = true; calculateFunc()'>Calculate</button>
+            <div class='show' x-show='showMessage' x-text='result'></div>
+        </div>
+    </div>
+
 
 </body>
 

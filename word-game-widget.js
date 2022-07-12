@@ -1,4 +1,3 @@
-
 document.addEventListener('alpine:init', () => {
    Alpine.data('wordGameWidget', function() {
     return {
